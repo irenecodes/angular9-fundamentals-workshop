@@ -3,15 +3,26 @@
     <mat-card-title> {{ title }} </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <span [style.color]="themeColor">Some coloured text!</span>
-    <hr />
-    <input matInput [(ngModel)]="themeColor" />
-    <hr />
-    <button mat-button (click)="updateColor()">Update Click</button>
-    <button mat-button (mouseenter)="updateColor2()">Update Mouse enter</button>
-    <!-- <mat-form-field class="example-full-width">
-      <mat-label>Theme color</mat-label>
-      
-    </mat-form-field> -->
+    <mat-list>
+      <mat-list-item
+        *ngFor="let lesson of courseLessons"
+        (click)="selectLesson(lesson)"
+      >
+        <h3>{{ lesson.title }}</h3>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Debug</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <span *ngIf="currentLesson; else elseBlock">{{
+      currentLesson | json
+    }}</span>
+    <ng-template #elseBlock>Select a lesson</ng-template>
   </mat-card-content>
 </mat-card>
