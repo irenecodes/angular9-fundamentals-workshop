@@ -30,4 +30,8 @@ export class HomeComponent implements OnInit {
     this.themeColor = 'steelblue';
   }
 
+  updateColor2() {
+    this.themeColor = 'pink';
+  }
+
 }
