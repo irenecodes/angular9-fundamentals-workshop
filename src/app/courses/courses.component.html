@@ -33,13 +33,23 @@
       <mat-card-header>
         <mat-card-title> Select Course </mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <!-- COURSE FORM -->
-        <pre *ngIf="currentCourse">{{ currentCourse | json }}</pre>
-      </mat-card-content>
-      <mat-card-actions>
-        <!-- COURSE ACTIONS -->
-      </mat-card-actions>
+      <!-- angular creates a form control to monitor what changes to the form and this is assigned to a local template var called form  -->
+      <form #form="ngForm">
+        <mat-card-content>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="title"
+              type="text"
+              name="title"
+              [(ngModel)]="currentCourse.title"
+            />
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <!-- COURSE ACTIONS -->
+        </mat-card-actions>
+      </form>
     </mat-card>
   </div>
 </div>

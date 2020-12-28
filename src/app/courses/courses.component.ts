@@ -30,8 +30,23 @@ export class CoursesComponent implements OnInit {
 
   constructor() { }
 
+  // want ngOnInit because when put logic in a constructor, it fires immediately. ngOnInit fires when component is initialized 
   ngOnInit(): void {
+    // setting to empty course to initialize 
+    this.resetSelectedCourse()
   }
+
+  resetSelectedCourse(){
+    const emptyCourse = {
+      id: null,
+      title: '',
+      description: '',
+      percentComplete: 0,
+      favorite: false
+    }
+    this.currentCourse = emptyCourse
+  }
+  
 
   selectCourse(course) {
     console.log(course);
