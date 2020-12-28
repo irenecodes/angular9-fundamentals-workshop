@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoursesService } from '../shared/services/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -10,30 +11,18 @@ export class CoursesComponent implements OnInit {
   // 2. Add event handler to select course 
   // 3. Display raw json of selected course 
   currentCourse = null;
-  courses = [
-    {
-      id: 1,
-      title: 'Angular 9 Fundamentals',
-      description: 'Learn the fundamentals of Angular 9',
-      percentComplete: 26,
-      favorite: true
-    },
-    {
-      id: 2,
-      title: 'JS',
-      description: 'Hello JS',
-      percentComplete: 50,
-      favorite: true
-    },
-
-  ];
-
-  constructor() { }
+  
+  courses = null;
+  // dependency injection happens at constructor as a parameter
+  // when working with TS, when set a private modifier, assigns that to a member of that class 
+  constructor(private coursesService: CoursesService) { }
 
   // want ngOnInit because when put logic in a constructor, it fires immediately. ngOnInit fires when component is initialized 
   ngOnInit(): void {
     // setting to empty course to initialize 
     this.resetSelectedCourse()
+
+    this.courses = this.coursesService.courses
   }
 
   resetSelectedCourse(){
