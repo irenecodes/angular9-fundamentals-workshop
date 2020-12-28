@@ -39,18 +39,29 @@
           <mat-form-field>
             <input
               matInput
-              placeholder="title"
+              placeholder="Title"
               type="text"
               name="title"
+              required
               [(ngModel)]="currentCourse.title"
             />
           </mat-form-field>
+          <mat-form-field
+            ><input
+              matInput
+              placeholder="Description"
+              type="text"
+              name="description"
+              [(ngModel)]="currentCourse.description"
+          /></mat-form-field>
         </mat-card-content>
         <mat-card-actions>
           <!-- COURSE ACTIONS -->
           <button type="button" mat-button (click)="cancel()">Cancel</button>
         </mat-card-actions>
       </form>
+      <pre>{{ form.value | json }}</pre>
+      <pre>{{ form.valid | json }}</pre>
     </mat-card>
   </div>
 </div>
