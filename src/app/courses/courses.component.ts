@@ -22,7 +22,7 @@ export class CoursesComponent implements OnInit {
     // setting to empty course to initialize 
     this.resetSelectedCourse()
 
-    this.courses = this.coursesService.courses
+    this.courses = this.coursesService.all()
   }
 
   resetSelectedCourse(){
@@ -43,13 +43,17 @@ export class CoursesComponent implements OnInit {
     this.currentCourse = course;
   }
 
-  saveCourse(){
-    console.log('save course');
+  saveCourse(course){
+    if(course.id){
+      this.coursesService.update(course)
+    } else {
+      this.coursesService.create(course)
+    }
     
   }
 
   deleteCourse(courseId) {
-    console.log(courseId);
+    this.coursesService.delete(courseId)
     
   }
 

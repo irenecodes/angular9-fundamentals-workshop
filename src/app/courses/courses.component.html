@@ -40,7 +40,7 @@
         </mat-card-title>
       </mat-card-header>
       <!-- angular creates a form control to monitor what changes to the form and this is assigned to a local template var called form  -->
-      <form #form="ngForm" (submit)="saveCourse()">
+      <form #form="ngForm" (submit)="saveCourse(currentCourse)">
         <mat-card-content>
           <mat-form-field>
             <input
@@ -72,7 +72,7 @@
             </mat-slider>
           </section>
           <section>
-            <h4>{{ currentCourse.favorite }}</h4>
+            <h4>Is Favorite: {{ currentCourse.favorite }}</h4>
             <mat-checkbox name="favorite" [(ngModel)]="currentCourse.favorite">
             </mat-checkbox>
           </section>
