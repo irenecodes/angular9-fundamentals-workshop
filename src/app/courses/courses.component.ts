@@ -7,9 +7,11 @@ import { CoursesService } from '../shared/services/courses.service';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-  // 1. display courses using ngFor 
-  // 2. Add event handler to select course 
-  // 3. Display raw json of selected course 
+  // HTTP Client Exercise 
+  // Step 1: Complete remote update call 
+  // Step 2: Complete remote delete call 
+  // Step 3: Fix UI on completed operation 
+
   currentCourse = null;
   
   courses = null;
@@ -48,19 +50,27 @@ export class CoursesComponent implements OnInit {
     this.coursesService.all().subscribe(courses => this.courses = courses)
   }
 
+  // create a composition method 
+  refreshCourses() {
+    this.resetSelectedCourse();
+    this.loadCourses()
+  }
+
+
+
   saveCourse(course){
     if(course.id){
-      this.coursesService.update(course)
+      this.coursesService.update(course).subscribe(result => this.refreshCourses())
     } else {
       
       // this.coursesService.create(course).subscribe(result => console.log('course created', result))
-      this.coursesService.create(course).subscribe(result => this.loadCourses())
+      this.coursesService.create(course).subscribe(result => this.refreshCourses())
     }
     
   }
 
   deleteCourse(courseId) {
-    this.coursesService.delete(courseId)
+    this.coursesService.delete(courseId).subscribe(result => this.refreshCourses())
     
   }
 
