@@ -20,13 +20,6 @@
       "description": "Learn the fundamentals of Angular 9",
       "percentComplete": 2,
       "favorite": true
-    },
-    {
-      "id": 10,
-      "title": "JS Part 2",
-      "description": "1",
-      "percentComplete": 6,
-      "favorite": false
     }
   ]
 }
