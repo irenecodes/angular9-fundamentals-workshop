@@ -21,8 +21,9 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     // setting to empty course to initialize 
     this.resetSelectedCourse()
-
-    this.courses = this.coursesService.all()
+    // resolve this promise 
+    // this.coursesService.all().subscribe(courses => this.courses = courses)
+    this.loadCourses()
   }
 
   resetSelectedCourse(){
@@ -43,11 +44,17 @@ export class CoursesComponent implements OnInit {
     this.currentCourse = course;
   }
 
+  loadCourses() {
+    this.coursesService.all().subscribe(courses => this.courses = courses)
+  }
+
   saveCourse(course){
     if(course.id){
       this.coursesService.update(course)
     } else {
-      this.coursesService.create(course)
+      
+      // this.coursesService.create(course).subscribe(result => console.log('course created', result))
+      this.coursesService.create(course).subscribe(result => this.loadCourses())
     }
     
   }

@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http'
+
+const BASE_URL = 'http://localhost:3000/'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
+  private model = 'courses';
   private courses = [
     {
       id: 1,
@@ -21,18 +25,24 @@ export class CoursesService {
     },
 
   ];
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   // CRUD 
   // read = all or find 
   all(){
-    return this.courses
+    // locally from here 
+    // return this.courses
+
+    // using a mock API endpoint - make a http call and return an observable: like a promise but gets many values 
+    return this.http.get(this.getUrl())
   }
   find(courseId){
   }
 
   create(course){
     console.log('create course', course);
+
+    return this.http.post(this.getUrl(), course);
   }
 
   update(course) {
@@ -40,5 +50,9 @@ export class CoursesService {
   }
   delete(courseId){
     console.log('delete course', courseId);
+  }
+
+  private getUrl () {
+    return `${BASE_URL}${this.model}`
   }
 }
