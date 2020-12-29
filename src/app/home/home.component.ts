@@ -8,6 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   title = 'Hello Workshop';
   currentLesson = null;
+
+  // Challenge 
+  // Step 1: Create a LessonsService
+  // hint: ng g shared/services/lessons 
+  // Step 2: Add lessons service to app.module
+  // Step 3: Inect lessons service into component 
+  // Step 4: Move lessons to service and consume in component 
+
+
   courseLessons = [
     { title: 'Hello Angular' },
     { title: 'Component Fundamentals' },
