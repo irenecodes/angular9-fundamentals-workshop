@@ -1,3 +1,4 @@
+import { componentFactoryName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../shared/services/courses.service';
 
@@ -69,6 +70,8 @@ export class CoursesComponent implements OnInit {
     
   }
 
+
+  // how do we test this function? Answer: Use a spy!
   deleteCourse(courseId) {
     this.coursesService.delete(courseId).subscribe(result => this.refreshCourses())
     
@@ -78,5 +81,6 @@ export class CoursesComponent implements OnInit {
   cancel(){
     this.resetSelectedCourse()
   }
+
 
 }
