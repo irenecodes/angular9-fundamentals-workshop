@@ -13,10 +13,14 @@ export class CourseDetailsComponent  {
   @Output() saved = new EventEmitter();
   @Output() cancelled = new EventEmitter();
 
+  // make a setter 
   @Input() set course(value) {
     if (value) {
       // create a clone of the course object we send in 
       this.selectedCourse = Object.assign({}, value);
+      // option to override 
+      // this.selectedCourse = Object.assign({}, value, {title: 'hi'});
+      
       this.originalTitle = value.title;
     }
   };
